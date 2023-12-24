@@ -8,6 +8,70 @@ servers:
   - url: http://localhost:8080
 
 paths:
+
+  /api/recomendations/{userId}/likes:
+    get:
+      summary: Retrieve a list of recommended posts for a user based on their likes
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        '404':
+          description: User not found
+
+  /api/recomendations/{userId}/preferences:
+    get:
+      summary: Retrieve a list of recommended topics for a user based on their preferences
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        '404':
+          description: User not found
+
+  /api/recomendations/{userId}/similar:
+    get:
+      summary: Retrieve a list of recommended posts for a user based on their similarity to other users
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+        '404':
+          description: User not found
+
   /api/users:
     get:
       summary: Retrieve all users
@@ -319,7 +383,7 @@ paths:
         '404':
           description: Like not found
 
-  /api/Preference:
+  /api/preference:
     get:
       summary: Retrieve all preferences
       responses:
@@ -347,7 +411,7 @@ paths:
               schema:
                 $ref: '#/components/schemas/Preference'
 
-  /api/Preference/{id}:
+  /api/preference/{id}:
     get:
       summary: Retrieve a preference by ID
       parameters:
@@ -377,6 +441,26 @@ paths:
         '204':
           description: Successful deletion
 
+  /api/preference/user/{userId}:
+    get:
+      summary: Retrieve a user's preferences by their ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+          '200':
+            description: Successful response
+            content:
+              application/json:
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/Preference'
+          '404':
+            description: Preference not found
 
 components:
   schemas:

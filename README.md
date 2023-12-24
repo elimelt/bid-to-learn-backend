@@ -27,3 +27,11 @@ springdoc.swagger-ui.url=/openapi.json
 5. The application will be running on `localhost:8080`. To view the API documentation, go to `localhost:8080/swagger-ui.html`
 
 
+### Contributing
+
+1. Create a new branch with `git checkout -b <branch_name>`
+2. Make your changes
+3. Commit your changes with `git commit -m <commit_message>`
+4. If any breaking API changes, update [openapi.yaml](./openapi.yaml) and run `./upload-api-spec.sh ./openapi.yaml` 
+5. In its own commit tag it with `breaking`, and push it to the branch
+6. Create a pull request, and make note of your breaking changes
