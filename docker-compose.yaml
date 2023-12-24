@@ -1,0 +1,21 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    restart: on-failure
+    env_file: ./.env
+    ports:
+      - $SPRING_LOCAL_PORT:$SPRING_DOCKER_PORT
+#    environment:
+#      SPRING_APPLICATION_JSON: '{
+#          spring.datasource.url=jdbc:postgresql://$POSTGRESQL_HOST:$POSTGRESQL_PORT/$POSTGRESQL_DATABASE?user=$POSTGRESQL_USER&password=$POSTGRESQL_PASSWORD
+#          spring.datasource.username=$POSTGRESQL_USER
+#          spring.datasource.password=$POSTGRESQL_PASSWORD
+#          spring.jpa.hibernate.ddl-auto=update
+#          springdoc.swagger-ui.url=/openapi.json
+#        }'
+    volumes:
+      - .m2:/root/.m2
+    stdin_open: true
+    tty: true
