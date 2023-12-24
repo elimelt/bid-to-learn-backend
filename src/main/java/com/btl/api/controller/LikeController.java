@@ -37,6 +37,7 @@ public class LikeController {
             Like createdLike = likeService.createLike(like);
             return ResponseEntity.ok(createdLike);
         } catch (Exception e) {
+            System.out.println(e.getMessage());
             return ResponseEntity.badRequest().build();
         }
     }

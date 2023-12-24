@@ -32,7 +32,7 @@ public class PostController {
 
     @GetMapping("/user/{userId}")
     public List<Post> getPostByUserId(@PathVariable Long userId) {
-        return postService.getPostByUserId(userId);
+        return postService.getPostsByUserId(userId);
     }
 
 

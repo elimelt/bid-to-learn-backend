@@ -40,7 +40,7 @@ public class LikeService {
 
     @Transactional(readOnly = true)
     public boolean isLiked(Long userId, Long postId) {
-        return !likeRepository.findByUserIdAndPostId(userId, postId).isEmpty();
+        return likeRepository.findByUserIdAndPostId(userId, postId) != null;
     }
 
     @Transactional(readOnly = true)

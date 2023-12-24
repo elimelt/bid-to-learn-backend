@@ -1,5 +1,6 @@
 package com.btl.api.model;
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -14,6 +15,7 @@ public class Topic {
     @Column(nullable = false)
     private String topicName;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 

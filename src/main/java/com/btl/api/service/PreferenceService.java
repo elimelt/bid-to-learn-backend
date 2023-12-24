@@ -34,5 +34,14 @@ public class PreferenceService {
     public Preference getPreferencesById(Long id) {
         return preferenceRepository.findById(id).orElse(null);
     }
-        
+
+    @Transactional(readOnly = true)
+    public List<Preference> getPreferencesByUserId(Long userId) {
+        return preferenceRepository.findByUserId(userId);
+    }
+
+    @Transactional(readOnly = true)
+    public List<Preference> getPreferencesForUser(Long userId) {
+        return preferenceRepository.findByUserId(userId);
+    }
 }

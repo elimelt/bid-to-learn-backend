@@ -1,6 +1,7 @@
 package com.btl.api.model;
 
 import jakarta.persistence.*;
+import org.hibernate.annotations.CreationTimestamp;
 
 import java.time.LocalDateTime;
 
@@ -19,6 +20,7 @@ public class Preference {
     @Column(name = "user_id")
     private Long userId;
 
+    @CreationTimestamp
     @Column(name = "created_at", nullable = false)
     private LocalDateTime createdAt;
 
@@ -35,7 +37,7 @@ public class Preference {
         this.score = score;
     }
 
-    public Long getId() {
+    public Long getPreferenceId() {
         return id;
     }
 

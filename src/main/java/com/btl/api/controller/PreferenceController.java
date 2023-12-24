@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/api/Preference")
+@RequestMapping("/api/preference")
 public class PreferenceController {
 
     @Autowired
@@ -18,6 +18,12 @@ public class PreferenceController {
     @GetMapping
     public ResponseEntity<List<Preference>> getAllPreferences() {
         List<Preference> Preference = preferenceService.getAllPreferences();
+        return ResponseEntity.ok(Preference);
+    }
+
+    @GetMapping("/user/{userId}")
+    public ResponseEntity<List<Preference>> getPreferencesByUserId(@PathVariable Long userId) {
+        List<Preference> Preference = preferenceService.getPreferencesByUserId(userId);
         return ResponseEntity.ok(Preference);
     }
 

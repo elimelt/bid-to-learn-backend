@@ -1,7 +1,6 @@
 package com.btl.api.controller;
 
 import com.btl.api.model.Post;
-import com.btl.api.service.PreferenceService;
 import com.btl.api.service.ReccomendationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("/api/recommendations")
 
-public class ReccomendationController {
+public class RecommendationController {
 
     @Autowired
     private ReccomendationService reccomendationService;

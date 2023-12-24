@@ -24,7 +24,7 @@ public class PostService {
         return postRepository.findById(postId);
     }
 
-    public List<Post> getPostByUserId(Long userId) {
+    public List<Post> getPostsByUserId(Long userId) {
         return postRepository.findByUserId(userId);
     }
 

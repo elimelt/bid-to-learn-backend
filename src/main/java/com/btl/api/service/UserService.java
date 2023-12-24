@@ -40,6 +40,10 @@ public class UserService {
         userRepository.deleteById(userId);
     }
 
+    public long countUsers() {
+        return userRepository.count();
+    }
+
 //    @Deprecated
 //    public User authenticate(String idTokenString, HttpTransport transport, JsonFactory jsonFactory)
 //            throws GeneralSecurityException, IOException {
