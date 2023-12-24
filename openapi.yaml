@@ -1,0 +1,543 @@
+openapi: 3.0.0
+info:
+  title: Bid to learn API spec
+  version: 1.0.0
+  description: API for managing users, posts, likes, preferences, and topics of Bid to learn
+
+servers:
+  - url: http://localhost:8080
+
+paths:
+  /api/users:
+    get:
+      summary: Retrieve all users
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/User'
+    post:
+      summary: Create a new user
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUserRequest'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+
+  /api/users/{userId}:
+    get:
+      summary: Retrieve a user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+        '404':
+          description: User not found
+    put:
+      summary: Update a user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Successful update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/User'
+    delete:
+      summary: Delete a user by ID
+      parameters:
+        - name: userId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successful deletion
+
+  /api/users/signin:
+    post:
+      summary: Sign in with mock authentication
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/User'
+      responses:
+        '200':
+          description: Successful sign-in
+        '400':
+          description: Invalid credentials
+  /api/posts:
+    get:
+      summary: Retrieve all posts
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Post'
+    post:
+      summary: Create a new post
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePostRequest'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+
+  /api/posts/{postId}:
+    get:
+      summary: Retrieve a post by ID
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+    put:
+      summary: Update a post by ID
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Post'
+      responses:
+        '200':
+          description: Successful update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Post'
+    delete:
+      summary: Delete a post by ID
+      parameters:
+        - name: postId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successful deletion
+        '404':
+          description: Post not found
+
+  /api/topics:
+    get:
+      summary: Retrieve all topics
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Topic'
+    post:
+      summary: Create a new topic
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTopicRequest'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+
+  /api/topics/{topicId}:
+    get:
+      summary: Retrieve a topic by ID
+      parameters:
+        - name: topicId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+    put:
+      summary: Update a topic by ID
+      parameters:
+        - name: topicId
+          in: path
+          required: true
+          schema:
+            type: integer
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Topic'
+      responses:
+        '200':
+          description: Successful update
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Topic'
+    delete:
+      summary: Delete a topic by ID
+      parameters:
+        - name: topicId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successful deletion
+        '404':
+          description: Topic not found
+
+  /api/likes:
+    get:
+      summary: Retrieve all likes
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Like'
+    post:
+      summary: Create a new like
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLikeRequest'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+
+  /api/likes/{likeId}:
+    get:
+      summary: Retrieve a like by ID
+      parameters:
+        - name: likeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Like'
+        '404':
+          description: Like not found
+    delete:
+      summary: Delete a like by ID
+      parameters:
+        - name: likeId
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successful deletion
+        '404':
+          description: Like not found
+
+  /api/Preference:
+    get:
+      summary: Retrieve all preferences
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Preference'
+    post:
+      summary: Create a new preference
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePreferenceRequest'
+      responses:
+        '200':
+          description: Successful creation
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preference'
+
+  /api/Preference/{id}:
+    get:
+      summary: Retrieve a preference by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: Successful response
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Preference'
+        '404':
+          description: Preference not found
+    delete:
+      summary: Delete a preference by ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '204':
+          description: Successful deletion
+
+
+components:
+  schemas:
+    User:
+      type: object
+      properties:
+        userId:
+          type: integer
+        googleUserId:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        profilePictureUrl:
+          type: string
+        locale:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - googleUserId
+        - username
+        - email
+
+    Post:
+      type: object
+      properties:
+        postId:
+          type: integer
+        userId:
+          type: integer
+        topicId:
+          type: integer
+        content:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - userId
+        - topicId
+        - content
+
+    Like:
+      type: object
+      properties:
+        likeId:
+          type: integer
+        postId:
+          type: integer
+        userId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - postId
+        - userId
+
+    Preference:
+      type: object
+      properties:
+        preferenceId:
+          type: integer
+        topicId:
+          type: integer
+        userId:
+          type: integer
+        createdAt:
+          type: string
+          format: date-time
+        score:
+          type: integer
+      required:
+        - topicId
+        - userId
+
+    Topic:
+      type: object
+      properties:
+        topicId:
+          type: integer
+        topicName:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+      required:
+        - topicName
+
+    CreateUserRequest:
+      type: object
+      properties:
+        googleUserId:
+          type: string
+        username:
+          type: string
+        email:
+          type: string
+          format: email
+        profilePictureUrl:
+          type: string
+        locale:
+          type: string
+      required:
+        - googleUserId
+        - username
+        - email
+
+    CreatePostRequest:
+      type: object
+      properties:
+        userId:
+          type: integer
+        topicId:
+          type: integer
+        content:
+          type: string
+      required:
+        - userId
+        - topicId
+        - content
+
+    CreateLikeRequest:
+      type: object
+      properties:
+        postId:
+          type: integer
+        userId:
+          type: integer
+      required:
+        - postId
+        - userId
+
+    CreatePreferenceRequest:
+      type: object
+      properties:
+        topicId:
+          type: integer
+        userId:
+          type: integer
+        score:
+          type: integer
+      required:
+        - topicId
+        - userId
+        - score
+
+    CreateTopicRequest:
+      type: object
+      properties:
+        topicName:
+          type: string
+      required:
+        - topicName
