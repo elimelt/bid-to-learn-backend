@@ -21,6 +21,12 @@ public class UserController {
         return ResponseEntity.ok(users);
     }
 
+    @GetMapping("/count")
+    public ResponseEntity<Long> getUserCount() {
+        Long count = userService.countUsers();
+        return ResponseEntity.ok(count);
+    }
+
     @GetMapping("/{userId}")
     public ResponseEntity<User> getUserById(@PathVariable Long userId) {
         User user = userService.getUserById(userId);

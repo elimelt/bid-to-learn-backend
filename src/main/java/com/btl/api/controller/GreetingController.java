@@ -1,19 +1,20 @@
 package com.btl.api.controller;
 
-import com.btl.api.pojo.ChatMessage;
+import com.btl.api.pojo.Greeting;
+import com.btl.api.pojo.HelloMessage;
 import org.springframework.messaging.handler.annotation.MessageMapping;
 import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.util.HtmlUtils;
+
 @Controller
-public class MessageController {
+public class GreetingController {
 
 
-    @MessageMapping("/msg")
-    @SendTo("/topic/test")
-    public ChatMessage test(ChatMessage message) throws Exception {
-        Thread.sleep(1000); // simulated delay
-        return new ChatMessage("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
+    @MessageMapping("/hello")
+    @SendTo("/topic/greetings")
+    public Greeting greeting(HelloMessage message) {
+        return new Greeting("Hello, " + HtmlUtils.htmlEscape(message.getName()) + "!");
     }
 
 }

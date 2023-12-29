@@ -1,4 +1,4 @@
-package com.btl.api;
+package com.btl.api.unit;
 
 import com.btl.api.controller.UserController;
 import com.btl.api.service.UserService;

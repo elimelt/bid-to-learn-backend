@@ -9,6 +9,7 @@ src/main/resources/application.properties
 
 .m2
 
+
 ### STS ###
 .apt_generated
 .classpath

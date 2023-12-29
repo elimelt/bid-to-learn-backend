@@ -1,4 +1,4 @@
-package com.btl.api;
+package com.btl.api.integration;
 
 import org.junit.jupiter.api.Test;
 

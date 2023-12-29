@@ -1,12 +1,13 @@
 package com.btl.api.pojo;
 
-public class Message {
+public class ChatMessage {
     private String content;
+    private Long userId;
 
-    public Message() {
+    public ChatMessage() {
     }
 
-    public Message(String content) {
+    public ChatMessage(String content) {
         this.content = content;
     }
 
